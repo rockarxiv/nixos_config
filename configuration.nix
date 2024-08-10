@@ -115,7 +115,8 @@
     gnome.gnome-disk-utility
     libsForQt5.kdeconnect-kde
     nvtopPackages.full
-    envycontrol.packages.x86_64-linux.default
+    mangohud
+    #    envycontrol.packages.x86_64-linux.default
     pciutils
   ];
 
@@ -186,16 +187,16 @@
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
 
-  hardware.nvidia.prime = {
-    reverseSync.enable = true;
-    # Enable if using an external GPU
-    allowExternalGpu = false;
-
-    # Make sure to use the correct Bus ID values for your system!
-    #intelBusId = "PCI:0:2:0";
-    nvidiaBusId = "PCI:1:0:0";
-    amdgpuBusId = "PCI:5:0:0"; #For AMD GPU
-  };
+  #  hardware.nvidia.prime = {
+  #    reverseSync.enable = true;
+  #    # Enable if using an external GPU
+  #    allowExternalGpu = false;
+  #
+  #    # Make sure to use the correct Bus ID values for your system!
+  #    #intelBusId = "PCI:0:2:0";
+  #    nvidiaBusId = "PCI:1:0:0";
+  #    amdgpuBusId = "PCI:5:0:0"; #For AMD GPU
+  #  };
 
   networking.firewall = {
     enable = true;
@@ -212,6 +213,7 @@
       enable = true;
       enableUserService = true;
     };
+    supergfxd.enable = true;
   };
-
+  systemd.services.supergfxd.path = [ pkgs.pciutils ];
 }
