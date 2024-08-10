@@ -107,7 +107,6 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     git
-    steam
     neovim
     _1password-gui
     jetbrains.idea-community
@@ -116,9 +115,12 @@
     libsForQt5.kdeconnect-kde
     nvtopPackages.full
     mangohud
+    protonup-qt
     #    envycontrol.packages.x86_64-linux.default
     pciutils
   ];
+
+  programs.steam.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -207,6 +209,9 @@
       { from = 1714; to = 1764; } # KDE Connect
     ];
   };
+
+  hardware.bluetooth.enable = true; # enables support for Bluetooth
+  hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
 
   services = {
     asusd = {
