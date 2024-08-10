@@ -2,11 +2,12 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, envycontrol,... }:
+{ config, pkgs, envycontrol, ... }:
 
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [
+      # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
   # Bootloader.
@@ -46,7 +47,7 @@
   # Enable the X11 windowing system.
   # You can disable this if you're only using the Wayland session.
   services.xserver.enable = false;
-  services.displayManager.sddm.wayland.enable=true;
+  services.displayManager.sddm.wayland.enable = true;
 
   # Enable the KDE Plasma Desktop Environment.
   services.displayManager.sddm.enable = true;
@@ -87,7 +88,7 @@
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
       kdePackages.kate
-    #  thunderbird
+      #  thunderbird
     ];
   };
 
@@ -105,17 +106,17 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-	git
-	steam
-	neovim
-	_1password-gui
-	jetbrains.idea-community
-	timeshift
-	gnome.gnome-disk-utility
-	libsForQt5.kdeconnect-kde
-	nvtopPackages.full
-	envycontrol.packages.x86_64-linux.default
-	pciutils
+    git
+    steam
+    neovim
+    _1password-gui
+    jetbrains.idea-community
+    timeshift
+    gnome.gnome-disk-utility
+    libsForQt5.kdeconnect-kde
+    nvtopPackages.full
+    envycontrol.packages.x86_64-linux.default
+    pciutils
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -151,7 +152,7 @@
   };
 
   # Load nvidia driver for Xorg and Wayland
-  services.xserver.videoDrivers = ["nvidia"];
+  services.xserver.videoDrivers = [ "nvidia" ];
 
   hardware.nvidia = {
 
@@ -178,7 +179,7 @@
     open = false;
 
     # Enable the Nvidia settings menu,
-	# accessible via `nvidia-settings`.
+    # accessible via `nvidia-settings`.
     nvidiaSettings = true;
 
     # Optionally, you may need to select the appropriate driver version for your specific GPU.
