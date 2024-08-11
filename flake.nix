@@ -2,7 +2,7 @@
   description = "A simple NixOS flake";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     envycontrol.url = "github:bayasdev/envycontrol";
   };
 

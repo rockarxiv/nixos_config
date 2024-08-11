@@ -46,9 +46,10 @@
 
   services.xserver.xkb.layout = "us,ru";
 
-  # Enable the X11 windowing system.
-  # You can disable this if you're only using the Wayland session.
+  # Disable the X11 windowing system.
   services.xserver.enable = false;
+
+  # Enable wayland sddm
   services.displayManager.sddm.wayland.enable = true;
 
   # Enable the KDE Plasma Desktop Environment.
@@ -107,16 +108,19 @@
     _1password-gui
     jetbrains.idea-community
     timeshift
-    gnome.gnome-disk-utility
+    gnome-disk-utility
     libsForQt5.kdeconnect-kde
     nvtopPackages.full
     mangohud
     protonup-qt
     #    envycontrol.packages.x86_64-linux.default
     pciutils
+    lutris
   ];
 
   programs.steam.enable = true;
+  programs.steam.gamescopeSession.enable = true;
+  programs.gamemode.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -148,6 +152,7 @@
   # Enable OpenGL
   hardware.opengl = {
     enable = true;
+    driSupport32Bit = true;
   };
 
   # Load nvidia driver for Xorg and Wayland
@@ -182,19 +187,19 @@
     nvidiaSettings = true;
 
     # Optionally, you may need to select the appropriate driver version for your specific GPU.
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
+    package = config.boot.kernelPackages.nvidiaPackages.production;
   };
 
-  #  hardware.nvidia.prime = {
-  #    reverseSync.enable = true;
-  #    # Enable if using an external GPU
-  #    allowExternalGpu = false;
-  #
-  #    # Make sure to use the correct Bus ID values for your system!
-  #    #intelBusId = "PCI:0:2:0";
-  #    nvidiaBusId = "PCI:1:0:0";
-  #    amdgpuBusId = "PCI:5:0:0"; #For AMD GPU
-  #  };
+  hardware.nvidia.prime = {
+    reverseSync.enable = true;
+    # Enable if using an external GPU
+    allowExternalGpu = false;
+
+    # Make sure to use the correct Bus ID values for your system!
+    #intelBusId = "PCI:0:2:0";
+    nvidiaBusId = "PCI:1:0:0";
+    amdgpuBusId = "PCI:5:0:0"; #For AMD GPU
+  };
 
   networking.firewall = {
     enable = true;
@@ -214,7 +219,7 @@
       enable = true;
       enableUserService = true;
     };
-    supergfxd.enable = true;
+    supergfxd.enable = false;
   };
-  systemd.services.supergfxd.path = [ pkgs.pciutils ];
+  #systemd.services.supergfxd.path = [ pkgs.pciutils ];
 }

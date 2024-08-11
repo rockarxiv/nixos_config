@@ -78,3 +78,10 @@ cleanUp() {
 	# As a separation of concerns - you will need to run this command to clean out boot
 	sudo /run/current-system/bin/switch-to-configuration boot
 }
+
+update() {
+    cd ~/nixos-config
+    nix flake update
+    build
+    cd -
+}
