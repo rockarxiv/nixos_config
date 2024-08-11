@@ -116,6 +116,7 @@
     #    envycontrol.packages.x86_64-linux.default
     pciutils
     lutris
+    github-desktop
   ];
 
   programs.steam.enable = true;
