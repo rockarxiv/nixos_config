@@ -70,7 +70,7 @@ pushConf() {
 	cd -
 }
 
-cleanUp() {
+clean() {
 	nix-env --list-generations
 	nix-collect-garbage  --delete-old
 	# recommeneded to sometimes run as sudo to collect additional garbage

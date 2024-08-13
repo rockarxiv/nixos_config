@@ -117,6 +117,7 @@
     pciutils
     lutris
     github-desktop
+    google-chrome
   ];
 
   programs.steam.enable = true;
